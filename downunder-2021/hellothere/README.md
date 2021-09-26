@@ -67,7 +67,7 @@ Here's the disassembly of the main() function.
 
 ```
 
-In the prologue we can see that it's making 96 bytes (0x60) of space on the stack and then storing a canary value at the end of that space, although this value is not used because main doesn't return. Next it **TODO**. Next it calls a buffer_init() function which disables buffering on standard input, standard output, and standard error which is commonly done in these types of problems. Next it attempts to open a file (./flag.txt) and reads it into a buffer on the stack which starts at 48 bytes (0x30) into the reserved space. If the file can't be opened, it prints an error message and calls exit().
+In the prologue we can see that it's making 96 bytes (0x60) of space on the stack and then storing a canary value at the end of that space, although this value is not used because main doesn't return. Next it stores a pointer to another buffer starting at rbp-0x30 into the reserved space. Next it calls a buffer_init() function which disables buffering on standard input, standard output, and standard error which is commonly done in these types of problems. Next it attempts to open a file (./flag.txt) and reads it into a buffer on the stack which starts at 48 bytes (0x30) into the reserved space. If the file can't be opened, it prints an error message and calls exit().
 
 After reading the flag into the buffer, it prompts the user to enter a name and reads the up to 32 bytes (0x20) of user input into a stack buffer starting at rbp-0x50. It then prints the greeting by calling printf() twice, first with a static string containing "\nHello there, " and second with the address of the buffer the user input was read into. It then calls putchar() to send a newline character.
 
