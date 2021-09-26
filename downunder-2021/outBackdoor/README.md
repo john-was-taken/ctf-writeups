@@ -49,7 +49,7 @@ Interestingly, there's another function in this binary named "outBackdoor". Here
 └           0x004011fa      c3             ret
 ```
 
-This function prints out a message by calling puts() and then calls system(/bin/sh).
+This function prints out a message by calling puts() and then calls system("/bin/sh").
 
 This is a typical "ret2win" style. The gets() call in main allows us to fill the 16 byte buffer and then overwrite the stored ebp and stored rip. This binary doesn't contain a stack canary, so we don't have to worry about crashing if we overwrite that in the process. In order to overwrite the stored rip, we'll need to send 16 bytes to fill the buffer, 8 bytes to overwrite the stored rbp, and 8 bytes to overwrite the stored rip. The contents of rbp don't matter here, so we can just send 24 bytes of padding followed by the little-endian representation of the address of the "outBackdoor" function.
 
