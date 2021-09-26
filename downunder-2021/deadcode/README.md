@@ -11,8 +11,6 @@ What features would you like to see in my app?
 Here's the disassembly of the main() function.
 
 ```asm
- [0x00401070]> pdf @main
-            ; DATA XREF from entry0 @ 0x40108d
 ┌ 114: main ();
 │           ; var int64_t var_20h @ rbp-0x20
 │           ; var int64_t var_8h @ rbp-0x8
